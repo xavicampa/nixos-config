@@ -20,13 +20,13 @@
     # I think technically you're not supposed to override the nixpkgs
     # used by neovim but recently I had failures if I didn't pin to my
     # own. We can always try to remove that anytime.
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # neovim-nightly-overlay = {
+    #   url = "github:nix-community/neovim-nightly-overlay";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # Other packages
-    zig.url = "github:mitchellh/zig-overlay";
+    # zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: let
@@ -34,19 +34,19 @@
 
     # Overlays is the list of overlays we want to apply from flake inputs.
     overlays = [
-      inputs.neovim-nightly-overlay.overlay
-      inputs.zig.overlays.default
+      # inputs.neovim-nightly-overlay.overlay
+      # inputs.zig.overlays.default
 
-      (final: prev: {
-        # Go we always want the latest version
-        go = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.go_1_19;
-      })
+      # (final: prev: {
+      #   # Go we always want the latest version
+      #   go = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.go_1_19;
+      # })
     ];
   in {
     nixosConfigurations.vm-aarch64 = mkVM "vm-aarch64" {
       inherit nixpkgs home-manager;
       system = "aarch64-linux";
-      user   = "mitchellh";
+      user   = "javi";
 
       overlays = overlays ++ [(final: prev: {
         # TODO: drop after release following NixOS 22.05
@@ -69,24 +69,6 @@
           ];
         };
       })];
-    };
-
-    nixosConfigurations.vm-aarch64-prl = mkVM "vm-aarch64-prl" rec {
-      inherit overlays nixpkgs home-manager;
-      system = "aarch64-linux";
-      user   = "mitchellh";
-    };
-
-    nixosConfigurations.vm-aarch64-utm = mkVM "vm-aarch64-utm" rec {
-      inherit overlays nixpkgs home-manager;
-      system = "aarch64-linux";
-      user   = "mitchellh";
-    };
-
-    nixosConfigurations.vm-intel = mkVM "vm-intel" rec {
-      inherit nixpkgs home-manager overlays;
-      system = "x86_64-linux";
-      user   = "mitchellh";
     };
   };
 }

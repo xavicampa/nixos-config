@@ -16,8 +16,8 @@
     # public binary cache that I use for all my derivations. You can keep
     # this, use your own, or toss it. Its typically safe to use a binary cache
     # since the data inside is checksummed.
-    binaryCaches = ["https://mitchellh-nixos-config.cachix.org"];
-    binaryCachePublicKeys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
+    # binaryCaches = ["https://mitchellh-nixos-config.cachix.org"];
+    # binaryCachePublicKeys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
   };
 
   # We expect to run the VM on hidpi machines.
@@ -32,10 +32,10 @@
   boot.loader.systemd-boot.consoleMode = "0";
 
   # Define your hostname.
-  networking.hostName = "dev";
+  networking.hostName = "nixosvm";
 
   # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "Europe/Oslo";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -49,7 +49,7 @@
   virtualisation.docker.enable = true;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_NO.UTF-8";
 
   # setup windowing environment
   services.xserver = {
@@ -95,10 +95,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     cachix
-    gnumake
     killall
     niv
-    rxvt_unicode
     xclip
 
     # For hypervisors that support auto-resizing, this script forces it.
@@ -136,5 +134,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 }
