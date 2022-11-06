@@ -49,12 +49,12 @@
   virtualisation.docker.enable = true;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_NO.UTF-8";
+  i18n.defaultLocale = "nb_NO.UTF-8";
 
   # setup windowing environment
   services.xserver = {
     enable = true;
-    layout = "us";
+    layout = "no";
     dpi = 220;
 
     desktopManager = {
