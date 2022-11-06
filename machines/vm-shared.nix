@@ -16,8 +16,8 @@
     # public binary cache that I use for all my derivations. You can keep
     # this, use your own, or toss it. Its typically safe to use a binary cache
     # since the data inside is checksummed.
-    # binaryCaches = ["https://mitchellh-nixos-config.cachix.org"];
-    # binaryCachePublicKeys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
+    binaryCaches = ["https://mitchellh-nixos-config.cachix.org"];
+    binaryCachePublicKeys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
   };
 
   # We expect to run the VM on hidpi machines.
@@ -98,6 +98,7 @@
     killall
     niv
     xclip
+    gnumake
 
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.

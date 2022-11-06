@@ -26,9 +26,9 @@ let sources = import ../../nix/sources.nix; in {
   #---------------------------------------------------------------------
 
   home.sessionVariables = {
-    LANG = "en_NO.UTF-8";
-    LC_CTYPE = "en_NO.UTF-8";
-    LC_ALL = "en_NO.UTF-8";
+    LANG = "nb_NO.UTF-8";
+    LC_CTYPE = "nb_NO.UTF-8";
+    LC_ALL = "nb_NO.UTF-8";
     EDITOR = "nvim";
     PAGER = "less -FirSwX";
     # MANPAGER = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
