@@ -108,6 +108,9 @@ let sources = import ../../nix/sources.nix; in {
 
   programs.starship = {
     enable = true;
+    settings = {
+      add_newline = false;
+    };
   };
 
   programs.git = {
