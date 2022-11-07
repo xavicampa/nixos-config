@@ -16,9 +16,14 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.jq
     pkgs.ripgrep
     pkgs.rofi
-    pkgs.tree
-    pkgs.watch
     pkgs.google-chrome
+    pkgs.nerdfonts
+    pkgs.tree-sitter
+    pkgs.gcc
+    pkgs.neovim # handle neovim manually
+    pkgs.lazygit
+    pkgs.tmux   # handle tmux manually
+    pkgs.neofetch
   ];
 
   #---------------------------------------------------------------------
@@ -30,16 +35,12 @@ let sources = import ../../nix/sources.nix; in {
     LC_CTYPE = "nb_NO.UTF-8";
     LC_ALL = "nb_NO.UTF-8";
     EDITOR = "nvim";
-    PAGER = "less -FirSwX";
+    # PAGER = "less -FirSwX";
     # MANPAGER = "sh -c 'col -bx | ${pkgs.bat}/bin/bat -l man -p'";
   };
 
-  # home.file.".gdbinit".source = ./gdbinit;
-  # home.file."./inputrc".source = ./inputrc;
-
   xdg.configFile."i3/config".text = builtins.readFile ./i3;
   xdg.configFile."rofi/config.rasi".text = builtins.readFile ./rofi;
-  # xdg.configFile."devtty/config".text = builtins.readFile ./devtty;
 
   # neovim
   xdg.configFile.nvim = {
@@ -47,36 +48,11 @@ let sources = import ../../nix/sources.nix; in {
     recursive = true;
   };
 
-  # tree-sitter parsers
-  # xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
-  # xdg.configFile."nvim/queries/proto/folds.scm".source =
-  #   "${sources.tree-sitter-proto}/queries/folds.scm";
-  # xdg.configFile."nvim/queries/proto/highlights.scm".source =
-  #   "${sources.tree-sitter-proto}/queries/highlights.scm";
-  # xdg.configFile."nvim/queries/proto/textobjects.scm".source =
-  #   ./textobjects.scm;
+  home.file.".tmux.conf".source = ./tmux.conf;
 
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
-
-  # programs.gpg.enable = true;
-
-  # programs.bash = { enable = true; shellOptions = []; historyControl = [ "ignoredups" "ignorespace" ];
-  #   initExtra = builtins.readFile ./bashrc;
-
-  #   shellAliases = {
-  #     ga = "git add";
-  #     gc = "git commit";
-  #     gco = "git checkout";
-  #     gcp = "git cherry-pick";
-  #     gdiff = "git diff";
-  #     gl = "git prettylog";
-  #     gp = "git push";
-  #     gs = "git status";
-  #     gt = "git tag";
-  #   };
-  # };
 
   # programs.direnv= {
   #   enable = true;
@@ -153,49 +129,6 @@ let sources = import ../../nix/sources.nix; in {
     # };
   };
 
-  # programs.go = {
-  #   enable = true;
-  #   goPath = "code/go";
-  #   goPrivate = [ "github.com/mitchellh" "github.com/hashicorp" "rfc822.mx" ];
-  # };
-
-  programs.tmux = {
-    enable = true;
-    terminal = "xterm-256color";
-    shortcut = "l";
-    secureSocket = false;
-
-    # extraConfig = ''
-    #   set -ga terminal-overrides ",*256col*:Tc"
-
-    #   set -g @dracula-show-battery false
-    #   set -g @dracula-show-network false
-    #   set -g @dracula-show-weather false
-
-    #   bind -n C-k send-keys "clear"\; send-keys "Enter"
-
-    #   run-shell ${sources.tmux-pain-control}/pain_control.tmux
-    #   run-shell ${sources.tmux-dracula}/dracula.tmux
-    # '';
-  };
-
-  # programs.alacritty = {
-  #   enable = true;
-
-  #   settings = {
-  #     env.TERM = "xterm-256color";
-
-  #     key_bindings = [
-  #       { key = "K"; mods = "Command"; chars = "ClearHistory"; }
-  #       { key = "V"; mods = "Command"; action = "Paste"; }
-  #       { key = "C"; mods = "Command"; action = "Copy"; }
-  #       { key = "Key0"; mods = "Command"; action = "ResetFontSize"; }
-  #       { key = "Equals"; mods = "Command"; action = "IncreaseFontSize"; }
-  #       { key = "Subtract"; mods = "Command"; action = "DecreaseFontSize"; }
-  #     ];
-  #   };
-  # };
-
   programs.kitty = {
     enable = true;
     extraConfig = builtins.readFile ./kitty;
@@ -217,54 +150,6 @@ let sources = import ../../nix/sources.nix; in {
       "battery all".enable = false;
     };
   };
-
-  programs.neovim = {
-    enable = true;
-
-    # package = pkgs.neovim-nightly;
-
-    # plugins = with pkgs; [
-    #   customVim.vim-cue
-    #   customVim.vim-fish
-    #   customVim.vim-fugitive
-    #   customVim.vim-glsl
-    #   customVim.vim-misc
-    #   customVim.vim-pgsql
-    #   customVim.vim-tla
-    #   customVim.vim-zig
-    #   customVim.pigeon
-    #   customVim.AfterColors
-
-    #   customVim.vim-nord
-    #   customVim.nvim-comment
-    #   customVim.nvim-lspconfig
-    #   customVim.nvim-plenary # required for telescope
-    #   customVim.nvim-telescope
-    #   customVim.nvim-treesitter
-    #   customVim.nvim-treesitter-playground
-    #   customVim.nvim-treesitter-textobjects
-
-    #   vimPlugins.vim-airline
-    #   vimPlugins.vim-airline-themes
-    #   vimPlugins.vim-eunuch
-    #   vimPlugins.vim-gitgutter
-
-    #   vimPlugins.vim-markdown
-    #   vimPlugins.vim-nix
-    #   vimPlugins.typescript-vim
-    # ];
-
-    # extraConfig = (import ./vim-config.nix) { inherit sources; };
-  };
-
-  # services.gpg-agent = {
-  #   enable = true;
-  #   pinentryFlavor = "tty";
-
-  #   # cache the keys forever so we don't get asked for a password
-  #   defaultCacheTtl = 31536000;
-  #   maxCacheTtl = 31536000;
-  # };
 
   xresources.extraConfig = builtins.readFile ./Xresources;
 
