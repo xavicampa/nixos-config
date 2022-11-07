@@ -18,6 +18,7 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.rofi
     pkgs.tree
     pkgs.watch
+    pkgs.google-chrome
   ];
 
   #---------------------------------------------------------------------

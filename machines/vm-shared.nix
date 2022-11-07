@@ -31,6 +31,9 @@
   # "error switching console mode" on boot.
   boot.loader.systemd-boot.consoleMode = "0";
 
+  # Allow uunfree packages (e.g. Google Chrome)
+  nixpkgs.config.allowUnfree = true;
+
   # Define your hostname.
   networking.hostName = "nixosvm";
 
