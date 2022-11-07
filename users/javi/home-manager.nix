@@ -106,6 +106,10 @@ let sources = import ../../nix/sources.nix; in {
     # ];
   };
 
+  programs.starship = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     # userName = "Mitchell Hashimoto";
