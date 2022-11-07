@@ -35,11 +35,17 @@ let sources = import ../../nix/sources.nix; in {
   };
 
   # home.file.".gdbinit".source = ./gdbinit;
-  # home.file.".inputrc".source = ./inputrc;
+  # home.file."./inputrc".source = ./inputrc;
 
   xdg.configFile."i3/config".text = builtins.readFile ./i3;
   xdg.configFile."rofi/config.rasi".text = builtins.readFile ./rofi;
   # xdg.configFile."devtty/config".text = builtins.readFile ./devtty;
+
+  # neovim
+  xdg.configFile.nvim = {
+    source = ./nvim;
+    recursive = true;
+  };
 
   # tree-sitter parsers
   # xdg.configFile."nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
@@ -56,10 +62,7 @@ let sources = import ../../nix/sources.nix; in {
 
   # programs.gpg.enable = true;
 
-  # programs.bash = {
-  #   enable = true;
-  #   shellOptions = [];
-  #   historyControl = [ "ignoredups" "ignorespace" ];
+  # programs.bash = { enable = true; shellOptions = []; historyControl = [ "ignoredups" "ignorespace" ];
   #   initExtra = builtins.readFile ./bashrc;
 
   #   shellAliases = {
@@ -217,6 +220,7 @@ let sources = import ../../nix/sources.nix; in {
 
   programs.neovim = {
     enable = true;
+
     # package = pkgs.neovim-nightly;
 
     # plugins = with pkgs; [
