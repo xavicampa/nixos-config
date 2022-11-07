@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 let sources = import ../../nix/sources.nix; in {
   xdg.enable = true;
 
