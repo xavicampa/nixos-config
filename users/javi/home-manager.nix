@@ -21,6 +21,7 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.tree-sitter
     pkgs.gcc
     pkgs.neovim # handle neovim manually
+    pkgs.rnix-lsp
     pkgs.lazygit
     pkgs.tmux   # handle tmux manually
     pkgs.neofetch
