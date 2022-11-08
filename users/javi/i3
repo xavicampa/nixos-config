@@ -46,7 +46,7 @@ default_border pixel 1
 
 # keyboard
 # exec --no-startup-id setxkbmap -option caps:ctrl_modifier
-exec --no-startup-id xmodmap ~/.config/i3/vim_xmodmap
+exec --no-startup-id xmodmap ~/.Xmodmap
 
 # background
 #exec_always --no-startup-id xsetroot -solid "black"

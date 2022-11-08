@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
-let sources = import ../../nix/sources.nix; in {
+let sources = import ../../nix/sources.nix; in
+{
   xdg.enable = true;
 
   #---------------------------------------------------------------------
@@ -23,7 +24,7 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.neovim # handle neovim manually
     pkgs.rnix-lsp
     pkgs.lazygit
-    pkgs.tmux   # handle tmux manually
+    pkgs.tmux # handle tmux manually
     pkgs.neofetch
   ];
 
@@ -49,6 +50,7 @@ let sources = import ../../nix/sources.nix; in {
     recursive = true;
   };
 
+  home.file.".Xmodmap".source = ./Xmodmap;
   home.file.".tmux.conf".source = ./tmux.conf;
 
   #---------------------------------------------------------------------

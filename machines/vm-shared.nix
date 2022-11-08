@@ -1,4 +1,4 @@
-{ config, pkgs, lib, currentSystem, currentSystemName,... }:
+{ config, pkgs, lib, currentSystem, currentSystemName, ... }:
 
 {
   # Be careful updating this.
@@ -16,8 +16,8 @@
     # public binary cache that I use for all my derivations. You can keep
     # this, use your own, or toss it. Its typically safe to use a binary cache
     # since the data inside is checksummed.
-    binaryCaches = ["https://mitchellh-nixos-config.cachix.org"];
-    binaryCachePublicKeys = ["mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
+    binaryCaches = [ "https://mitchellh-nixos-config.cachix.org" ];
+    binaryCachePublicKeys = [ "mitchellh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ=" ];
   };
 
   # We expect to run the VM on hidpi machines.
@@ -58,7 +58,7 @@
   services.xserver = {
     enable = true;
     layout = "no";
-    dpi = 220;
+    dpi = 192;
 
     desktopManager = {
       xterm.enable = false;
@@ -72,7 +72,7 @@
       # AARCH64: For now, on Apple Silicon, we must manually set the
       # display resolution. This is a known issue with VMware Fusion.
       sessionCommands = ''
-        ${pkgs.xorg.xset}/bin/xset r rate 200 40
+            ${pkgs.xorg.xset}/bin/xset r rate 225 35
       '';
     };
 
@@ -101,6 +101,7 @@
     killall
     niv
     xclip
+    xorg.xmodmap
     gnumake
 
     # For hypervisors that support auto-resizing, this script forces it.
