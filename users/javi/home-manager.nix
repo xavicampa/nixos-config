@@ -16,7 +16,7 @@ let sources = import ../../nix/sources.nix; in {
     pkgs.jq
     pkgs.ripgrep
     pkgs.rofi
-    pkgs.google-chrome
+    pkgs.firefox
     pkgs.nerdfonts
     pkgs.tree-sitter
     pkgs.gcc
