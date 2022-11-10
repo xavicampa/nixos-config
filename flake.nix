@@ -54,7 +54,7 @@
           (final: prev: {
             # TODO: drop after release following NixOS 22.05
             open-vm-tools = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.open-vm-tools;
-            neovim = inputs.nixpkgs-unstable.legacyPackages.neovim;
+            # neovim = inputs.nixpkgs-unstable.legacyPackages.neovim;
 
             # We need Mesa on aarch64 to be built with "svga". The default Mesa
             # build does not include this: https://github.com/Mesa3D/mesa/blob/49efa73ba11c4cacaed0052b984e1fb884cf7600/meson.build#L192
