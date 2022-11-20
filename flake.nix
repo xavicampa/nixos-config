@@ -10,12 +10,12 @@
     # We use the unstable nixpkgs repo for some packages.
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+    # home-manager = {
+    #   url = "github:nix-community/home-manager/release-22.05";
 
-      # We want home-manager to use the same set of nixpkgs as our system.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #   # We want home-manager to use the same set of nixpkgs as our system.
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # I think technically you're not supposed to override the nixpkgs
     # used by neovim but recently I had failures if I didn't pin to my
@@ -46,7 +46,7 @@
     in
     {
       nixosConfigurations.vm-aarch64 = mkVM "vm-aarch64" {
-        inherit nixpkgs home-manager;
+        inherit nixpkgs;
         system = "aarch64-linux";
         user = "javi";
 
@@ -84,7 +84,7 @@
         ];
       };
       nixosConfigurations.vm-intel = mkVM "vm-intel" rec {
-        inherit nixpkgs home-manager overlays;
+        inherit nixpkgs overlays;
         system = "x86_64-linux";
         user = "javi";
       };

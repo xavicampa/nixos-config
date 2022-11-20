@@ -72,7 +72,7 @@
       # AARCH64: For now, on Apple Silicon, we must manually set the
       # display resolution. This is a known issue with VMware Fusion.
       sessionCommands = ''
-            ${pkgs.xorg.xset}/bin/xset r rate 225 35
+        ${pkgs.xorg.xset}/bin/xset r rate 225 35
       '';
     };
 
@@ -98,11 +98,16 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     cachix
+    firefox
+    git
+    gnumake
+    google-chrome
     killall
+    kitty
     niv
+    rofi
     xclip
     xorg.xmodmap
-    gnumake
 
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.
@@ -123,6 +128,12 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs = {
+    fish = {
+      enable = true;
+    };
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
