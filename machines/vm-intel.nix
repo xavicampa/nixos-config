@@ -8,6 +8,12 @@
   # Interface is this on Intel Fusion
   networking.interfaces.ens33.useDHCP = true;
 
+  environment.systemPackages = with pkgs; [
+    _1password
+    _1password-gui
+    slack
+    vscode
+  ];
   # Shared folder to host works on Intel
   # fileSystems."/host" = {
   #   fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";

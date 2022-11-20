@@ -90,15 +90,19 @@
     fontDir.enable = true;
 
     fonts = [
-      pkgs.fira-code
+      pkgs.nerdfonts
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    autotiling
     cachix
+    dunst
+    feh
     firefox
+    flameshot
     git
     gnumake
     google-chrome
@@ -106,8 +110,11 @@
     kitty
     niv
     rofi
+    rofimoji
     xclip
     xorg.xmodmap
+    xclip
+    xfce.thunar
 
     # For hypervisors that support auto-resizing, this script forces it.
     # I've noticed not everyone listens to the udev events so this is a hack.
