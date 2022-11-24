@@ -21,6 +21,8 @@
   # This works through our custom module imported above
   virtualisation.vmware.guest.enable = true;
 
+  services.xserver.dpi = 192;
+
   # Share our host filesystem
   fileSystems."/host" = {
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
